@@ -17,6 +17,7 @@ export default function App() {
   };
   const headerTitleStyle = {
     color: "white",
+    fontWeight: "bold"
   };
   const headerTintColor = "white";
   return (

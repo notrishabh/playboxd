@@ -1,9 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Result } from "../../Model/IGenreList";
+import { Result } from "../../Model/IGame";
 
-const ListElement: React.FC<{ data: Result }> = ({ data }) => {
+const OneGame: React.FC<{ data: Result }> = ({ data }) => {
   const navigation = useNavigation();
   const styles = StyleSheet.create({
     container: {
@@ -21,20 +21,19 @@ const ListElement: React.FC<{ data: Result }> = ({ data }) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => {
-        navigation.navigate("List", {
-          id: data.id,
-        });
-      }}
+    //   onPress={() => {
+    //     navigation.navigate("List", {
+    //       id: data.id,
+    //     });
+    //   }}
     >
       <Image
         style={styles.tinyLogo}
         source={{
-          uri: data.image_background,
+          uri: data.background_image,
         }}
       />
-      <Text style={styles.heading}>{data.name}</Text>
     </TouchableOpacity>
   );
 };
-export default ListElement;
+export default OneGame;
