@@ -1,21 +1,25 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Result } from "../../Model/IGame";
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import FastImage from "react-native-fast-image";
+import { Game } from "../../Model/IGameList";
 
-const OneGame: React.FC<{ data: Result }> = ({ data }) => {
+const OneGame: React.FC<{ data: Game }> = ({ data }) => {
   const navigation = useNavigation();
+  const size = Dimensions.get('window').width/4;
   const styles = StyleSheet.create({
     container: {
-      marginRight: 20,
+      marginHorizontal: 5,
+      marginVertical: 3,
+      flex: 1,
     },
     heading: {
       color: "white",
       fontSize: 12,
     },
     tinyLogo: {
-      width: 75,
-      height: 100,
+      width: size - (0.25*size),
+      height: size,
     },
   });
   return (

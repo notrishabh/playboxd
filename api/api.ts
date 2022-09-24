@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IGame } from "../Model/IGame";
+import { IGameList } from "../Model/IGameList";
 import { IGenre } from "../Model/IGenre";
 import { IGenreList } from "../Model/IGenreList";
 import { IPlatformsList } from "../Model/IPlatformsList";
@@ -14,16 +14,19 @@ type gameListParams = {
 }
 
 
-export const getGameList = (genreId ?:number) =>
-  api.get(`/games`, { params: { key: key, genres: genreId } });
-export const getGenreList = () =>
-  api.get<IGenreList>(`/genres`, { params: { key: key } });
-export const getPlatformsList = () =>
-  api.get<IPlatformsList>(`/platforms`, {
+export const getGameList = async (genreId ?:number) =>
+  await api.get<IGameList>(`/games`, { params: { key: key, genres: genreId, page_size: 100 } });
+
+export const getGenreList = async () =>
+  await api.get<IGenreList>(`/genres`, { params: { key: key } });
+
+export const getPlatformsList = async () =>
+  await api.get<IPlatformsList>(`/platforms`, {
     params: { key: key, page: 1, page_size: 20 },
   });
-export const getGenreById = (id: number) =>
-  api.get<IGenre>(`/genres/${id}`, { params: { key: key } });
+
+export const getGenreById = async (id: number) =>
+  await api.get<IGenre>(`/genres/${id}`, { params: { key: key } });
 
 const apis = {
   getGameList,

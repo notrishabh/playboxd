@@ -1,12 +1,12 @@
-export interface IGame {
+export interface IGameList {
  count:          number;
  next:           string;
  previous:       null;
- results:        Result[];
+ results:        Game[];
  user_platforms: boolean;
 }
 
-export interface Result {
+export interface Game {
  added:              number;
  added_by_status:    AddedByStatus;
  background_image:   string;
