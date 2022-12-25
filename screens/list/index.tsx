@@ -1,7 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import useGameList from "../../hooks/GameList";
 import useGenreDetails from "../../hooks/GenreDetails";
 import s from "../../styles/style";
@@ -22,9 +21,6 @@ const List = () => {
     isLoading: gameLoading,
     isSuccess: gameSuccess,
   } = useGameList(id);
-  if (!gameLoading) {
-    console.log(gameList);
-  }
   return (
     <View style={s.mainContainer}>
       {isLoading && <Text style={s.heading}>Loading...</Text>}

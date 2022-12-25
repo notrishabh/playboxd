@@ -1,12 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
-import FastImage from "react-native-fast-image";
+import React, { useEffect } from "react";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { Game } from "../../Model/IGameList";
 
 const OneGame: React.FC<{ data: Game }> = ({ data }) => {
   const navigation = useNavigation();
-  const size = Dimensions.get('window').width/4;
+  const size = Dimensions.get("window").width / 4;
   const styles = StyleSheet.create({
     container: {
       marginHorizontal: 5,
@@ -18,19 +23,18 @@ const OneGame: React.FC<{ data: Game }> = ({ data }) => {
       fontSize: 12,
     },
     tinyLogo: {
-      width: size - (0.25*size),
+      width: size - 0.25 * size,
       height: size,
     },
   });
+  const navigateToGame = () => {
+    console.log("onegame", data);
+    navigation.navigate("GameScreen", {
+      id: data.id,
+    });
+  };
   return (
-    <TouchableOpacity
-      style={styles.container}
-    //   onPress={() => {
-    //     navigation.navigate("List", {
-    //       id: data.id,
-    //     });
-    //   }}
-    >
+    <TouchableOpacity style={styles.container} onPress={navigateToGame}>
       <Image
         style={styles.tinyLogo}
         source={{

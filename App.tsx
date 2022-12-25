@@ -1,11 +1,10 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import Browse from "./screens/browse";
+import GameScreen from "./screens/game";
 import List from "./screens/list";
 
 const queryClient = new QueryClient();
@@ -45,6 +44,13 @@ export default function App() {
               component={List}
               options={{
                 title: "List",
+              }}
+            />
+            <Stack.Screen
+              name="GameScreen"
+              component={GameScreen}
+              options={{
+                title: "Game",
               }}
             />
           </Stack.Navigator>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { IGameDetails } from "../Model/IGameDetails";
 import { IGameList } from "../Model/IGameList";
 import { IGenre } from "../Model/IGenre";
 import { IGenreList } from "../Model/IGenreList";
@@ -9,13 +10,10 @@ const api = axios.create({
   baseURL: "https://api.rawg.io/api/",
 });
 
-type gameListParams = {
-  genreId?: number
-}
-
-
-export const getGameList = async (genreId ?:number) =>
-  await api.get<IGameList>(`/games`, { params: { key: key, genres: genreId, page_size: 100 } });
+export const getGameList = async (genreId?: number) =>
+  await api.get<IGameList>(`/games`, {
+    params: { key: key, genres: genreId, page_size: 100 },
+  });
 
 export const getGenreList = async () =>
   await api.get<IGenreList>(`/genres`, { params: { key: key } });
@@ -28,11 +26,15 @@ export const getPlatformsList = async () =>
 export const getGenreById = async (id: number) =>
   await api.get<IGenre>(`/genres/${id}`, { params: { key: key } });
 
+export const getGameDetails = async (id: number) =>
+  await api.get<IGameDetails>(`/games/${id}`, { params: { key: key } });
+
 const apis = {
   getGameList,
   getGenreList,
   getPlatformsList,
   getGenreById,
+  getGameDetails,
 };
 
 export default apis;
