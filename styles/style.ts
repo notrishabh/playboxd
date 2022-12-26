@@ -18,5 +18,15 @@ export default StyleSheet.create({
     subText: {
         color: 'white',
         fontSize: 8
+    },
+    subTextGrey:{
+        color: '#9CBBC7',
+        fontSize: 10
+    },
+    bigheading: {
+        color: 'white',
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 5
     }
 });

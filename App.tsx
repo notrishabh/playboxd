@@ -7,7 +7,14 @@ import Browse from "./screens/browse";
 import GameScreen from "./screens/game";
 import List from "./screens/list";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 360
+    }
+  }
+});
 const Stack = createNativeStackNavigator();
 
 export default function App() {

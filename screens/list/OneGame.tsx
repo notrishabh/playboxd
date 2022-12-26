@@ -28,7 +28,6 @@ const OneGame: React.FC<{ data: Game }> = ({ data }) => {
     },
   });
   const navigateToGame = () => {
-    console.log("onegame", data);
     navigation.navigate("GameScreen", {
       id: data.id,
     });

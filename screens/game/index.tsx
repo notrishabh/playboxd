@@ -13,18 +13,34 @@ const GameScreen = () => {
   }
   const screenWidth = Dimensions.get("window").width;
   const styles = StyleSheet.create({
-    container: {
-      marginHorizontal: 5,
-      marginVertical: 3,
-      flex: 1,
-    },
-    heading: {
-      color: "white",
-      fontSize: 12,
-    },
-    tinyLogo: {
-      width: screenWidth,
+    banner: {
+      alignSelf: "stretch",
       height: 200,
+    },
+    mainInfo: {
+      display: "flex",
+      flexDirection: "row",
+      margin: 10,
+    },
+    info: {
+      marginRight: 10,
+      flex: 2,
+    },
+    thumbnail: {
+      width: 100,
+      height: 150,
+    },
+    dateLine: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+    },
+    publishedBy: {
+      marginTop: 2,
+      fontWeight: "bold",
+    },
+    descriptionContainer: {
+      margin: 10,
     },
   });
 
@@ -34,12 +50,37 @@ const GameScreen = () => {
       {isSuccess && (
         <View style={s.container}>
           <Image
-            style={styles.tinyLogo}
+            style={styles.banner}
             source={{
-              uri: data.background_image,
+              uri: data.background_image_additional
+                ? data.background_image_additional
+                : data.background_image,
             }}
           />
-          <Text style={s.text}>{data.name}</Text>
+          <View style={styles.mainInfo}>
+            <View style={styles.info}>
+              <Text style={s.bigheading}>{data.name}</Text>
+              <Text style={s.subTextGrey}>
+                {data.released} &#x2022; PUBLISHED BY
+              </Text>
+              <Text style={[s.subTextGrey, styles.publishedBy]}>
+                {data.publishers ? data.publishers[0].name : "Unknown"}
+              </Text>
+            </View>
+            <View>
+              <Image
+                style={styles.thumbnail}
+                source={{
+                  uri: data.background_image,
+                }}
+              />
+            </View>
+          </View>
+          <View style={styles.descriptionContainer}>
+            <Text numberOfLines={3} style={s.subTextGrey}>
+              {data.description_raw}
+            </Text>
+          </View>
         </View>
       )}
     </View>
